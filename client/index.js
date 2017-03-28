@@ -11,6 +11,6 @@ module.exports = class DurgaTransporterPrimus {
 		this.primus.on('data', data => client.dispatch(data));
 		client.listen(data => this.primus.write(data));
 		//this.primus.on('end', () => client.destroy());
-
+		this.primus.on('reconnected', () => client.trigger('reconnect'));
 	}
 };
